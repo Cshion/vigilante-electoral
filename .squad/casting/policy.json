@@ -1,0 +1,5 @@
+{
+  "universe_allowlist": ["sicario"],
+  "capacity_limit": 8,
+  "overflow_strategy": "diegetic_expansion"
+}

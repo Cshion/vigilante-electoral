@@ -1,0 +1,146 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Vigilante Electoral - AWS Lambda Functions for ONPE data tracking
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    Runtime: python3.12
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        TZ: America/Lima
+        SUPABASE_URL: !Ref SupabaseUrl
+        SUPABASE_KEY: !Ref SupabaseKey
+
+Parameters:
+  SupabaseUrl:
+    Type: String
+    Description: Supabase project URL
+    NoEcho: false
+  SupabaseKey:
+    Type: String
+    Description: Supabase service role key (for server-side operations)
+    NoEcho: true
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+    Description: Deployment environment
+
+Resources:
+  # =============================================================================
+  # Worker Lambda - Fetches ONPE data every 15 minutes
+  # =============================================================================
+  WorkerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub vigilante-electoral-worker-${Environment}
+      Handler: worker.handler
+      CodeUri: src/
+      Description: Fetches ONPE electoral data and saves to Supabase
+      Events:
+        ScheduledEvent:
+          Type: ScheduleV2
+          Properties:
+            Name: !Sub vigilante-worker-schedule-${Environment}
+            Description: Trigger worker every 15 minutes
+            ScheduleExpression: rate(15 minutes)
+            ScheduleExpressionTimezone: America/Lima
+            State: ENABLED
+      Tags:
+        Project: VigilanteElectoral
+        Environment: !Ref Environment
+
+  # =============================================================================
+  # API Lambda - HTTP endpoints for position data
+  # =============================================================================
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub vigilante-electoral-api-${Environment}
+      Handler: api.handler
+      CodeUri: src/
+      Description: API endpoints for electoral position data
+      Events:
+        GetPositionHistory:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /positions/history
+            Method: GET
+        PostPositionRefresh:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /positions/refresh
+            Method: POST
+      Tags:
+        Project: VigilanteElectoral
+        Environment: !Ref Environment
+
+  # =============================================================================
+  # HTTP API Gateway with CORS
+  # =============================================================================
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: !Ref Environment
+      Description: Vigilante Electoral API
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+          - X-Amz-Date
+          - X-Api-Key
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        MaxAge: 300
+      Tags:
+        Project: VigilanteElectoral
+        Environment: !Ref Environment
+
+  # =============================================================================
+  # CloudWatch Log Groups (with retention)
+  # =============================================================================
+  WorkerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/vigilante-electoral-worker-${Environment}
+      RetentionInDays: 14
+
+  ApiLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/vigilante-electoral-api-${Environment}
+      RetentionInDays: 14
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}"
+  
+  WorkerFunctionArn:
+    Description: Worker Lambda Function ARN
+    Value: !GetAtt WorkerFunction.Arn
+  
+  ApiFunctionArn:
+    Description: API Lambda Function ARN
+    Value: !GetAtt ApiFunction.Arn
+  
+  PositionHistoryEndpoint:
+    Description: GET /positions/history endpoint
+    Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/positions/history"
+  
+  PositionRefreshEndpoint:
+    Description: POST /positions/refresh endpoint
+    Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/positions/refresh"

@@ -1,0 +1,12 @@
+{
+  "assignments": [
+    {
+      "assignment_id": "init-2026-04-18",
+      "timestamp": "2026-04-18T00:00:00Z",
+      "universe": "sicario",
+      "agents": ["Alejandro", "Kate", "Matt", "Silvio"],
+      "project": "vigilante_electoral",
+      "resonance_signals": ["vigilante/watchdog theme", "monitoring/surveillance", "civic duty"]
+    }
+  ]
+}
