@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLiveResults, useRegions, useActasProgress } from '@/hooks/useResults';
+import { getProjection, ProjectionData } from '@/lib/api';
 import { RivalryDisplay } from '@/components/RivalryDisplay';
 import { VoteEvolution } from '@/components/VoteEvolution';
 import { LiveIndicator } from '@/components/LiveIndicator';
@@ -11,11 +12,17 @@ import { NotificationPanel } from '@/components/NotificationPanel';
 
 export default function HomePage() {
   const [selectedRegion, setSelectedRegion] = useState('TOTAL');
+  const [projection, setProjection] = useState<ProjectionData | null>(null);
   const { regions, isLoading: regionsLoading } = useRegions();
   // Only need 2 candidates now: Juntos and Renovación
   const { results, isLoading, isError, refresh } = useLiveResults(2, selectedRegion);
   // Fetch actas progress for selected region
   const { actas } = useActasProgress(selectedRegion);
+
+  // Fetch projection data when region changes
+  useEffect(() => {
+    getProjection(selectedRegion).then(setProjection);
+  }, [selectedRegion]);
 
   const selectedRegionName = results?.region_name || regions?.find((r) => r.code === selectedRegion)?.name || 'Total';
 
@@ -120,6 +127,7 @@ export default function HomePage() {
             actasPercentage={actas?.actas_percentage}
             actasCounted={actas?.actas_counted}
             actasTotal={actas?.actas_total}
+            projection={projection}
           />
         )}
 

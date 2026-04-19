@@ -31,3 +31,11 @@
 
 - When adding new response fields in scraper, ALWAYS check the router layer to ensure the field is passed through
 - Cache key design matters — include all parameters that change the response
+
+### 2026-04-19: Projection Algorithm Design
+- Tabla `position_snapshots` tiene columnas clave para proyección: `actas_percentage`, `actas_counted`, `actas_total`
+- Algoritmo lineal simple (`votes × 100 / actas_pct`) es muy impreciso al inicio del conteo
+- Mejor enfoque: Trend-Based Projection con Exponential Weighted Average (EWA)
+- Fórmula: `growth_rate = Δvotes / Δactas`, luego `projected = current + (rate × remaining_actas)`
+- Para confiabilidad: usar últimos N snapshots con peso decreciente (decay=0.7)
+- Edge case importante: trackear por `candidate_id` no por posición, porque pueden swapear

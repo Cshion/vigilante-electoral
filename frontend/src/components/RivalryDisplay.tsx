@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Candidate, Rivalry } from '@/lib/types';
+import { ProjectionData } from '@/lib/api';
 import { formatActas } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -15,6 +16,7 @@ interface RivalryDisplayProps {
   actasPercentage?: number;
   actasCounted?: number;
   actasTotal?: number;
+  projection?: ProjectionData | null;
 }
 
 // Tooltip component for the disclaimer info icon - mobile-friendly with tap
@@ -130,6 +132,7 @@ export function RivalryDisplay({
   actasPercentage,
   actasCounted,
   actasTotal,
+  projection,
 }: RivalryDisplayProps) {
   // POS2 = JUNTOS POR EL PERÚ (party_id=10), POS3 = RENOVACIÓN POPULAR (party_id=35)
   // The rivalry.leader field returns "POS2", "POS3", or "TIE"
@@ -142,22 +145,28 @@ export function RivalryDisplay({
   const winnerName = juntosWinning ? 'JUNTOS POR EL PERÚ' : 'RENOVACIÓN POPULAR';
   const winnerShortName = juntosWinning ? 'JUNTOS' : 'RENOVACIÓN';
   
-  // Calculate projected votes for contradiction detection
-  const juntosProjected = actasPercentage && actasPercentage > 0 
-    ? Math.round(juntos.votes * (100 / actasPercentage)) 
-    : juntos.votes;
-  const renovacionProjected = actasPercentage && actasPercentage > 0 
-    ? Math.round(renovacion.votes * (100 / actasPercentage)) 
-    : renovacion.votes;
+  // Use projection data from backend if available, otherwise fallback to simple calculation
+  const juntosProjected = projection?.juntos.projected_votes ?? 
+    (actasPercentage && actasPercentage > 0 
+      ? Math.round(juntos.votes * (100 / actasPercentage)) 
+      : juntos.votes);
+  const renovacionProjected = projection?.renovacion.projected_votes ?? 
+    (actasPercentage && actasPercentage > 0 
+      ? Math.round(renovacion.votes * (100 / actasPercentage)) 
+      : renovacion.votes);
   
-  // Detect if projection contradicts current leader
+  // Determine leaders for display
   const projectedLeader = juntosProjected > renovacionProjected ? 'POS2' : 'POS3';
   const currentLeader = rivalry.leader;
-  const hasContradiction = actasPercentage !== undefined && 
-                          actasPercentage > 0 && 
-                          actasPercentage < 100 && 
-                          projectedLeader !== currentLeader &&
-                          currentLeader !== 'TIE';
+  
+  // Use backend contradiction detection if available
+  const hasContradiction = projection?.has_contradiction ?? (
+    actasPercentage !== undefined && 
+    actasPercentage > 0 && 
+    actasPercentage < 100 && 
+    projectedLeader !== currentLeader &&
+    currentLeader !== 'TIE'
+  );
   
   const projectedWinnerName = projectedLeader === 'POS2' ? 'JUNTOS' : 'RENOVACIÓN';
   const currentWinnerName = currentLeader === 'POS2' ? 'JUNTOS' : 'RENOVACIÓN';
@@ -176,7 +185,7 @@ export function RivalryDisplay({
 
         {/* Actas Progress Banner */}
         {actasPercentage !== undefined && (
-          <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 px-4 py-2 border-b-2 border-blue-700">
+          <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 px-4 py-2">
             <div className="flex items-center justify-center gap-2">
               <span className="text-white font-black text-sm uppercase tracking-wide">
                 📊 Actas: {formatActas(actasPercentage)}%
@@ -190,27 +199,29 @@ export function RivalryDisplay({
           </div>
         )}
 
-        {/* Candidates Face-Off */}
-        <div className="grid grid-cols-2 divide-x-2 divide-gray-200">
-          {/* JUNTOS POR EL PERÚ */}
-          <PartyColumn
-            candidate={juntos}
-            isWinning={juntosWinning}
-            isJuntos={true}
-          />
+        {/* Candidates Face-Off with VS Badge */}
+        <div className="relative">
+          <div className="grid grid-cols-2 divide-x-2 divide-gray-200">
+            {/* JUNTOS POR EL PERÚ */}
+            <PartyColumn
+              candidate={juntos}
+              isWinning={juntosWinning}
+              isJuntos={true}
+            />
 
-          {/* RENOVACIÓN POPULAR */}
-          <PartyColumn
-            candidate={renovacion}
-            isWinning={renovacionWinning}
-            isJuntos={false}
-          />
-        </div>
+            {/* RENOVACIÓN POPULAR */}
+            <PartyColumn
+              candidate={renovacion}
+              isWinning={renovacionWinning}
+              isJuntos={false}
+            />
+          </div>
 
-        {/* VS Badge - Centered between columns */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ marginTop: '20px' }}>
-          <div className="bg-gray-900 text-white font-black text-base sm:text-lg px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border-3 sm:border-4 border-white shadow-xl">
-            VS
+          {/* VS Badge - Centered between columns */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+            <div className="bg-gray-900 text-white font-black text-base sm:text-lg px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border-3 sm:border-4 border-white shadow-xl">
+              VS
+            </div>
           </div>
         </div>
 
@@ -257,24 +268,6 @@ export function RivalryDisplay({
           )}
         </div>
 
-        {/* Contradiction Warning Banner - when projection differs from current leader */}
-        {hasContradiction && (
-          <div className="bg-gradient-to-r from-amber-100 via-orange-100 to-amber-100 px-4 py-3 border-y-2 border-amber-300">
-            <div className="flex items-center justify-center gap-2 text-amber-800">
-              <span className="text-lg">⚡</span>
-              <div className="text-center">
-                <span className="font-bold text-sm uppercase tracking-wide">
-                  ATENCIÓN: Carrera muy cerrada
-                </span>
-                <div className="text-xs mt-1 space-x-3 font-medium">
-                  <span>Ahora lidera: <strong>{currentWinnerName}</strong></span>
-                  <span className="opacity-60">|</span>
-                  <span>Tendencia final: <strong>{projectedWinnerName}</strong></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Proyección de Votos Finales - Debajo del resultado */}
         {actasPercentage !== undefined && actasPercentage > 0 && actasPercentage < 100 && (
@@ -299,7 +292,9 @@ export function RivalryDisplay({
                   ? 'bg-red-100/80 border-red-300' 
                   : 'bg-red-50/60 border-red-200'
               }`}>
-                <span className="text-red-600 text-xs font-medium block">JUNTOS</span>
+                <span className="text-red-600 text-[10px] font-medium block leading-tight">
+                  {LOCAL_IMAGES.JUNTOS.partyName}
+                </span>
                 <span className="text-red-700 font-bold text-sm font-mono">
                   {juntosProjected.toLocaleString('es-PE')}
                 </span>
@@ -312,7 +307,9 @@ export function RivalryDisplay({
                   ? 'bg-sky-100/80 border-sky-300' 
                   : 'bg-sky-50/60 border-sky-200'
               }`}>
-                <span className="text-sky-600 text-xs font-medium block">RENOVACIÓN</span>
+                <span className="text-sky-600 text-[10px] font-medium block leading-tight">
+                  {LOCAL_IMAGES.RENOVACION.partyName}
+                </span>
                 <span className="text-sky-700 font-bold text-sm font-mono">
                   {renovacionProjected.toLocaleString('es-PE')}
                 </span>
@@ -326,8 +323,15 @@ export function RivalryDisplay({
             <div className="flex items-center justify-center gap-1 sm:gap-1.5 mt-3 py-2.5 sm:py-2 
                             bg-purple-100/50 rounded border border-purple-200 min-h-[44px]">
               <InfoTooltip>
-                Calculamos la tendencia usando la tasa de crecimiento de votos por cada 1% de actas procesadas. 
-                No es una predicción definitiva. Toca para cerrar.
+                {projection ? (
+                  <>
+                    Analizamos todo el historial del conteo oficial para calcular la velocidad de 
+                    crecimiento de cada partido. Usamos suavizado exponencial (EWMA): 
+                    los cambios más recientes pesan más que los antiguos.
+                  </>
+                ) : (
+                  'Proyección simple: votos actuales × (100 / % actas contadas).'
+                )}
               </InfoTooltip>
               <p className="text-purple-600 text-[10px] sm:text-[11px] font-medium leading-tight">
                 Estimación matemática. Puede cambiar.

@@ -1,11 +1,47 @@
 """Endpoints para tracking de 2do y 3er puesto."""
 from fastapi import APIRouter, HTTPException, Query
 from fastapi_cache.decorator import cache
-from typing import Optional
+from typing import Annotated, Optional
 from datetime import datetime
+from pydantic import BaseModel, Field
+import math
 
 from ..database import db
 from ..services.scraper import scraper, REGIONS
+
+
+# =============================================================================
+# Pydantic Models para Proyección
+# =============================================================================
+
+class ProjectionCandidate(BaseModel):
+    """Datos de proyección para un candidato."""
+    party_name: str
+    current_votes: int
+    projected_votes: int
+    projected_votes_low: int
+    projected_votes_high: int
+    growth_rate_per_pct: float = Field(description="Votos ganados por cada 1% de actas")
+    trend_direction: str = Field(description="increasing, decreasing, stable")
+
+
+class ProjectionResponse(BaseModel):
+    """Respuesta del endpoint de proyección."""
+    timestamp: str
+    region_code: str
+    region_name: str
+    actas_percentage: float
+    remaining_actas_pct: float
+    snapshots_used: int
+    confidence: str = Field(description="high, medium, low, insufficient")
+    juntos: ProjectionCandidate
+    renovacion: ProjectionCandidate
+    projected_leader: str
+    current_leader: str
+    projected_gap: int
+    has_contradiction: bool
+    swap_probability: str = Field(description="unlikely, possible, likely")
+    methodology_text: str
 
 router = APIRouter(prefix="/positions", tags=["positions"])
 
@@ -317,3 +353,172 @@ async def get_position_changes(
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/projection", response_model=ProjectionResponse)
+@cache(expire=300)  # Cache 5 minutos
+async def get_vote_projection(
+    region_code: Annotated[str, Query(description="Código de región")] = "TOTAL"
+):
+    """
+    Proyección de votos finales usando tendencia histórica (TBP Algorithm).
+    
+    Usa TODOS los snapshots disponibles para calcular la tasa de crecimiento
+    de votos por cada 1% de actas procesadas, con peso exponencial decreciente
+    (más peso a datos recientes).
+    
+    SIEMPRE muestra proyección — no hay límite de % de actas.
+    """
+    # Validar región
+    if region_code not in REGIONS:
+        raise HTTPException(status_code=400, detail=f"Región desconocida: {region_code}")
+    
+    # Obtener TODOS los snapshots (sin límite de tiempo)
+    snapshots = await db.get_all_position_snapshots_for_projection(region_code)
+    
+    if len(snapshots) < 3:
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Datos insuficientes para proyectar ({len(snapshots)} snapshots). Se necesitan al menos 3."
+        )
+    
+    current = snapshots[0]
+    actas_pct = current.get("actas_percentage", 0) or 0
+    remaining_actas = 100 - actas_pct
+    
+    # Calcular deltas entre snapshots consecutivos
+    deltas = []
+    for i in range(len(snapshots) - 1):
+        curr = snapshots[i]
+        prev = snapshots[i + 1]
+        
+        delta_actas = (curr.get("actas_percentage", 0) or 0) - (prev.get("actas_percentage", 0) or 0)
+        
+        if delta_actas <= 0.001:  # Skip si no hubo avance significativo
+            continue
+        
+        deltas.append({
+            "pos2_rate": (curr["pos2_votes"] - prev["pos2_votes"]) / delta_actas,
+            "pos3_rate": (curr["pos3_votes"] - prev["pos3_votes"]) / delta_actas,
+            "actas_delta": delta_actas
+        })
+    
+    if len(deltas) < 2:
+        raise HTTPException(
+            status_code=404, 
+            detail="No hay suficientes cambios de actas para proyectar"
+        )
+    
+    # Calcular promedio ponderado exponencial (EWA)
+    decay = 0.8  # Factor de decaimiento
+    
+    def weighted_stats(rates: list) -> tuple:
+        """Calcular media y desviación estándar ponderadas exponencialmente."""
+        weights = [decay ** i for i in range(len(rates))]
+        total_weight = sum(weights)
+        mean = sum(r * w for r, w in zip(rates, weights)) / total_weight
+        variance = sum(w * (r - mean)**2 for r, w in zip(rates, weights)) / total_weight
+        std_dev = math.sqrt(variance)
+        return mean, std_dev
+    
+    pos2_rates = [d["pos2_rate"] for d in deltas]
+    pos3_rates = [d["pos3_rate"] for d in deltas]
+    
+    pos2_growth, pos2_std = weighted_stats(pos2_rates)
+    pos3_growth, pos3_std = weighted_stats(pos3_rates)
+    
+    # Proyectar votos finales
+    pos2_projected = int(current["pos2_votes"] + pos2_growth * remaining_actas)
+    pos2_low = int(current["pos2_votes"] + (pos2_growth - 1.5 * pos2_std) * remaining_actas)
+    pos2_high = int(current["pos2_votes"] + (pos2_growth + 1.5 * pos2_std) * remaining_actas)
+    
+    pos3_projected = int(current["pos3_votes"] + pos3_growth * remaining_actas)
+    pos3_low = int(current["pos3_votes"] + (pos3_growth - 1.5 * pos3_std) * remaining_actas)
+    pos3_high = int(current["pos3_votes"] + (pos3_growth + 1.5 * pos3_std) * remaining_actas)
+    
+    # Detectar tendencia (comparar últimos 3 vs resto)
+    def detect_trend(rates: list) -> str:
+        """Detectar si la tendencia es creciente, decreciente o estable."""
+        if len(rates) < 4:
+            return "stable"
+        recent = sum(rates[:3]) / 3
+        older = sum(rates[3:]) / len(rates[3:])
+        momentum = (recent - older) / max(abs(older), 1)
+        if momentum > 0.05:
+            return "increasing"
+        elif momentum < -0.05:
+            return "decreasing"
+        return "stable"
+    
+    # Calcular confianza
+    def calc_confidence(actas_pct: float, sample_count: int, rel_std: float) -> str:
+        """Calcular nivel de confianza de la proyección."""
+        if sample_count < 3:
+            return "insufficient"
+        if actas_pct > 85:
+            return "high"
+        if actas_pct > 60 and rel_std < 0.15:
+            return "high"
+        if actas_pct > 40:
+            return "medium"
+        return "low"
+    
+    avg_std = (pos2_std + pos3_std) / 2
+    avg_growth = (abs(pos2_growth) + abs(pos3_growth)) / 2
+    rel_std = avg_std / max(avg_growth, 1)
+    confidence = calc_confidence(actas_pct, len(deltas), rel_std)
+    
+    # Análisis de carrera
+    current_leader = "POS2" if current["pos2_votes"] > current["pos3_votes"] else "POS3"
+    projected_leader = "POS2" if pos2_projected > pos3_projected else "POS3"
+    has_contradiction = current_leader != projected_leader
+    
+    projected_gap = pos2_projected - pos3_projected
+    
+    # Probabilidad de swap
+    swap_prob = "unlikely"
+    if pos2_low < pos3_high and pos3_low < pos2_high:
+        swap_prob = "possible"
+        if abs(projected_gap) < (pos2_std + pos3_std) * remaining_actas * 0.5:
+            swap_prob = "likely"
+    
+    region_info = REGIONS.get(region_code, {})
+    
+    return ProjectionResponse(
+        timestamp=current.get("timestamp", datetime.now().isoformat()),
+        region_code=region_code,
+        region_name=region_info.get("name", region_code),
+        actas_percentage=round(actas_pct, 2),
+        remaining_actas_pct=round(remaining_actas, 2),
+        snapshots_used=len(deltas),
+        confidence=confidence,
+        juntos=ProjectionCandidate(
+            party_name=current.get("pos2_party_name", "JUNTOS POR EL PERÚ"),
+            current_votes=current["pos2_votes"],
+            projected_votes=pos2_projected,
+            projected_votes_low=pos2_low,
+            projected_votes_high=pos2_high,
+            growth_rate_per_pct=round(pos2_growth, 0),
+            trend_direction=detect_trend(pos2_rates)
+        ),
+        renovacion=ProjectionCandidate(
+            party_name=current.get("pos3_party_name", "RENOVACIÓN POPULAR"),
+            current_votes=current["pos3_votes"],
+            projected_votes=pos3_projected,
+            projected_votes_low=pos3_low,
+            projected_votes_high=pos3_high,
+            growth_rate_per_pct=round(pos3_growth, 0),
+            trend_direction=detect_trend(pos3_rates)
+        ),
+        projected_leader="JUNTOS" if projected_leader == "POS2" else "RENOVACIÓN",
+        current_leader="JUNTOS" if current_leader == "POS2" else "RENOVACIÓN",
+        projected_gap=projected_gap,
+        has_contradiction=has_contradiction,
+        swap_probability=swap_prob,
+        methodology_text=(
+            f"Proyección basada en {len(deltas)} cambios históricos. "
+            f"Tasa de crecimiento: JUNTOS +{int(pos2_growth):,}/1% actas, "
+            f"RENOVACIÓN +{int(pos3_growth):,}/1% actas. "
+            f"Confianza: {confidence}."
+        )
+    )

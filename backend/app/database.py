@@ -292,6 +292,27 @@ class SupabaseClient:
             logger.warning(f"Error fetching position history: {e}")
             return []
     
+    async def get_all_position_snapshots_for_projection(self, region_code: str = "TOTAL") -> List[Dict]:
+        """
+        Obtener TODOS los snapshots de una región para calcular proyección.
+        Ordenados por timestamp DESC (más reciente primero).
+        NO tiene límite de tiempo — usa todos los snapshots disponibles.
+        """
+        if not self.client:
+            return []
+        try:
+            query = self.client.table("position_snapshots").select(
+                "timestamp, pos2_votes, pos3_votes, actas_percentage, "
+                "pos2_candidate_id, pos3_candidate_id, pos2_party_name, pos3_party_name"
+            ).eq("region_code", region_code).order(
+                "timestamp", desc=True
+            ).execute()
+            
+            return query.data if query.data else []
+        except Exception as e:
+            logger.warning(f"Error fetching all snapshots for projection: {e}")
+            return []
+    
     async def get_position_changes(self, hours: int = 24, limit: int = 100) -> List[Dict]:
         """Obtener historial de cambios entre snapshots."""
         if not self.client:
