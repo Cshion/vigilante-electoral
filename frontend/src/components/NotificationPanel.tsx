@@ -9,10 +9,20 @@ interface NotificationPanelProps {
   onRegionSelect?: (regionCode: string) => void;
 }
 
+const ITEMS_PER_PAGE = 15;
+
 export function NotificationPanel({ onRegionSelect }: NotificationPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const lastRefreshRef = useRef<number>(0);
-  const { notifications, count, isLoading, isError, refresh } = useNotifications(30, 12);
+  // Fetch up to 100 notifications from the last week (168 hours)
+  const { notifications, count, isLoading, isError, refresh } = useNotifications(100, 168);
+  
+  const totalPages = Math.ceil(notifications.length / ITEMS_PER_PAGE);
+  const paginatedNotifications = notifications.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
 
   // Refresh on panel open, but throttle to max once per minute
   const handleToggle = useCallback(() => {
@@ -105,7 +115,7 @@ export function NotificationPanel({ onRegionSelect }: NotificationPanelProps) {
                 </h3>
               </div>
               <p className="text-amber-100 text-xs mt-1">
-                Cambios en departamentos y extranjero (12h)
+                Cambios en departamentos y extranjero (1 semana)
               </p>
             </div>
 
@@ -127,12 +137,12 @@ export function NotificationPanel({ onRegionSelect }: NotificationPanelProps) {
                 <div className="text-center py-8 px-4">
                   <div className="text-4xl mb-2">🔕</div>
                   <p className="text-gray-500 text-sm">
-                    No hay cambios registrados en las últimas 12 horas
+                    No hay cambios registrados en la última semana
                   </p>
                 </div>
               ) : (
                 <div className="divide-y divide-gray-100">
-                  {notifications.map((notification) => (
+                  {paginatedNotifications.map((notification) => (
                     <NotificationItem
                       key={notification.id}
                       notification={notification}
@@ -145,12 +155,34 @@ export function NotificationPanel({ onRegionSelect }: NotificationPanelProps) {
               )}
             </div>
 
-            {/* Footer */}
+            {/* Footer with Pagination */}
             {notifications.length > 0 && (
               <div className="bg-gray-50 px-4 py-2 border-t border-gray-200">
-                <p className="text-center text-xs text-gray-500">
-                  Últimas 12 horas • {count} cambios
-                </p>
+                {totalPages > 1 ? (
+                  <div className="flex items-center justify-between">
+                    <button
+                      onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
+                      disabled={currentPage === 0}
+                      className="px-2 py-1 text-xs bg-white border border-gray-300 rounded disabled:opacity-50"
+                    >
+                      ← Ant
+                    </button>
+                    <span className="text-xs text-gray-500">
+                      {currentPage + 1}/{totalPages} • {count} cambios
+                    </span>
+                    <button
+                      onClick={() => setCurrentPage(p => Math.min(totalPages - 1, p + 1))}
+                      disabled={currentPage >= totalPages - 1}
+                      className="px-2 py-1 text-xs bg-white border border-gray-300 rounded disabled:opacity-50"
+                    >
+                      Sig →
+                    </button>
+                  </div>
+                ) : (
+                  <p className="text-center text-xs text-gray-500">
+                    Última semana • {count} cambios
+                  </p>
+                )}
               </div>
             )}
           </div>

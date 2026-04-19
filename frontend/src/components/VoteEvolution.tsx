@@ -55,11 +55,16 @@ interface VoteEvolutionProps {
   regionCode?: string;
 }
 
+const ITEMS_PER_PAGE = 15;
+
 export function VoteEvolution({ regionCode }: VoteEvolutionProps) {
+  const [currentPage, setCurrentPage] = useState(0);
+  
   // Build API URL with optional region filter
+  // Use 168 hours (1 week) to ensure all historical data is visible
   const apiUrl = regionCode
-    ? `/positions/history?hours=24&limit=50&region_code=${regionCode}`
-    : '/positions/history?hours=24&limit=50';
+    ? `/positions/history?hours=168&limit=100&region_code=${regionCode}`
+    : '/positions/history?hours=168&limit=100';
 
   const { data, isLoading } = useSWR<PositionHistoryResponse>(
     apiUrl,
@@ -73,6 +78,16 @@ export function VoteEvolution({ regionCode }: VoteEvolutionProps) {
   );
 
   const history = data?.snapshots || [];
+  const totalPages = Math.ceil(history.length / ITEMS_PER_PAGE);
+  const paginatedHistory = history.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
+
+  // Reset to page 0 when region changes
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [regionCode]);
 
   if (isLoading) {
     return (
@@ -88,7 +103,7 @@ export function VoteEvolution({ regionCode }: VoteEvolutionProps) {
   if (!history || history.length === 0) {
     return (
       <div className="mt-6 bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-700 mb-2">📈 Evolución de Votos</h3>
+        <h3 className="text-lg font-semibold text-gray-700 mb-2">� Historial de Cambios</h3>
         <p className="text-base text-gray-500 text-center py-10">
           Sin datos históricos aún. Los cambios aparecerán aquí cuando ONPE actualice y los votos cambien.
         </p>
@@ -129,17 +144,45 @@ export function VoteEvolution({ regionCode }: VoteEvolutionProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {history.slice(0, 15).map((snapshot, i) => (
-              <ChangeRow 
-                key={snapshot.id} 
-                snapshot={snapshot} 
-                prevSnapshot={history[i + 1]} 
-                isLatest={i === 0}
-              />
-            ))}
+            {paginatedHistory.map((snapshot, i) => {
+              const actualIndex = currentPage * ITEMS_PER_PAGE + i;
+              return (
+                <ChangeRow 
+                  key={snapshot.id} 
+                  snapshot={snapshot} 
+                  prevSnapshot={history[actualIndex + 1]} 
+                  isLatest={actualIndex === 0}
+                />
+              );
+            })}
           </tbody>
         </table>
       </div>
+      
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="px-4 py-3 border-t border-gray-200 bg-gray-50 flex items-center justify-between">
+          <span className="text-xs text-gray-500">
+            Página {currentPage + 1} de {totalPages} ({history.length} registros)
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
+              disabled={currentPage === 0}
+              className="px-3 py-1 text-sm bg-white border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+            >
+              ← Ant
+            </button>
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages - 1, p + 1))}
+              disabled={currentPage >= totalPages - 1}
+              className="px-3 py-1 text-sm bg-white border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+            >
+              Sig →
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -169,7 +212,7 @@ function ChangeRow({
           <span className="text-sm md:text-base font-bold text-gray-900 whitespace-nowrap">
             {formatTimeOnly(snapshot.timestamp)}
           </span>
-          <span className="text-[10px] md:text-xs text-gray-500 hidden md:block">
+          <span className="text-[10px] md:text-xs text-gray-500">
             {formatDateOnly(snapshot.timestamp)}
           </span>
           {isLatest && (

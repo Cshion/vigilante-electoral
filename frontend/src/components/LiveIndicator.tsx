@@ -62,11 +62,11 @@ export function LiveIndicator({ timestamp, refreshInterval = 900 }: LiveIndicato
     return () => clearInterval(timer);
   }, [nextScrapeTime, intervalMinutes]);
 
-  // Format next scrape time as HH:MM
+  // Format next scrape time as HH:MM AM/PM
   const nextTimeFormatted = nextScrapeTime.toLocaleTimeString('es-PE', {
     hour: '2-digit',
     minute: '2-digit',
-    hour12: false,
+    hour12: true,
   });
 
   return (

@@ -165,6 +165,34 @@ export function RivalryDisplay({
             </span>
           )}
         </div>
+
+        {/* Proyección de Votos Finales - Debajo del resultado */}
+        {actasPercentage !== undefined && actasPercentage > 0 && actasPercentage < 100 && (
+          <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-purple-50 px-4 py-3 border-t border-purple-200">
+            <div className="text-center mb-2">
+              <span className="text-purple-700 font-semibold text-xs uppercase tracking-wide">
+                🔮 Proyección al 100% de actas
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div className="bg-red-100 rounded-lg px-3 py-2">
+                <span className="text-red-600 text-xs font-medium block">JUNTOS</span>
+                <span className="text-red-700 font-bold text-sm font-mono">
+                  {Math.round(juntos.votes * (100 / actasPercentage)).toLocaleString('es-PE')}
+                </span>
+              </div>
+              <div className="bg-sky-100 rounded-lg px-3 py-2">
+                <span className="text-sky-600 text-xs font-medium block">RENOVACIÓN</span>
+                <span className="text-sky-700 font-bold text-sm font-mono">
+                  {Math.round(renovacion.votes * (100 / actasPercentage)).toLocaleString('es-PE')}
+                </span>
+              </div>
+            </div>
+            <p className="text-center text-purple-400 text-[10px] mt-2 italic">
+              Extrapolación lineal (votos × 100/actas%)
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
