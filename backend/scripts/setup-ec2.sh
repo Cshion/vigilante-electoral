@@ -408,6 +408,12 @@ echo -e "${YELLOW}4. (Opcional) Configura SSL con dominio:${NC}"
 echo "   sudo certbot --nginx -d tu-dominio.com"
 echo ""
 
+echo -e "${YELLOW}5. (Opcional) Configura mTLS con Cloudflare:${NC}"
+echo "   Si usas Cloudflare como proxy, ejecuta desde tu máquina local:"
+echo "   ./configure-mtls.sh <EC2_IP> <PEM_FILE> <HOSTNAME> <CF_TOKEN> <ZONE_ID>"
+echo "   Esto protege el servidor para que solo acepte conexiones de Cloudflare."
+echo ""
+
 echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}"
 echo -e "${GREEN}Comandos útiles:${NC}"
 echo "   Ver estado:     sudo systemctl status vigilante"
