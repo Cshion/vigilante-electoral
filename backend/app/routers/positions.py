@@ -8,6 +8,9 @@ import math
 
 from ..database import db
 from ..services.scraper import scraper, REGIONS
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # =============================================================================
@@ -166,7 +169,8 @@ async def get_current_race(
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in get_current_race")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.post("/snapshot")
@@ -267,7 +271,8 @@ async def take_snapshot(
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in take_snapshot")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/history")
@@ -332,7 +337,8 @@ async def get_position_history(
             "total": len(formatted)
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in get_position_history")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/changes")
@@ -352,7 +358,8 @@ async def get_position_changes(
             "swaps_detected": sum(1 for c in changes if c.get("position_swap"))
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in get_position_changes")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/projection", response_model=ProjectionResponse)

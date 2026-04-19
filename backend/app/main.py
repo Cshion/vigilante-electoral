@@ -92,16 +92,8 @@ async def health_check(response: Response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     
     if not db.is_connected:
-        raise HTTPException(
-            status_code=503,
-            detail="Database not connected. Configure SUPABASE_URL and SUPABASE_KEY."
-        )
-    return {
-        "status": "healthy",
-        "timestamp": datetime.now().isoformat(),
-        "version": settings.APP_VERSION,
-        "supabase_connected": db.is_connected
-    }
+        return {"status": "degraded"}
+    return {"status": "healthy"}
 
 
 @app.get("/")
@@ -111,29 +103,8 @@ async def root(response: Response):
     response.headers["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
     
     return {
-        "name": settings.APP_NAME,
-        "version": settings.APP_VERSION,
-        "docs": "/docs",
-        "endpoints": {
-            # Reading endpoints (read from Supabase)
-            "live_results": "/results/live/{region_code}",
-            "live_regions": "/results/live/regions",
-            "positions_current": "/positions/current",
-            "positions_history": "/positions/history",
-            "positions_changes": "/positions/changes",
-            "current_results": "/results/current",
-            "history": "/results/history",
-            # Notifications
-            "notifications": "/api/notifications",
-            "notifications_unread": "/api/notifications/unread/count",
-            "notifications_mark_read": "POST /api/notifications/read",
-            # Scraping endpoints (write to Supabase)
-            "scrape_all": "POST /api/scrape",
-            "scrape_status": "/api/scrape/status",
-            # Admin
-            "positions_snapshot": "POST /positions/snapshot",
-            "snapshots": "/snapshots/"
-        }
+        "name": "Vigilante Electoral API",
+        "status": "running"
     }
 
 

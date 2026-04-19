@@ -5,6 +5,9 @@ from fastapi_cache.decorator import cache
 
 from ..database import db
 from ..services.scraper import scraper, REGIONS
+import logging
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/results", tags=["results"])
 
@@ -38,7 +41,8 @@ async def get_live_results(
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in get_live_results")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/live/regions")
@@ -125,7 +129,8 @@ async def get_actas_progress(
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in get_actas_progress")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.get("/live/{region_code}")
@@ -178,4 +183,5 @@ async def get_live_results_by_region(
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Internal error in get_live_results_by_region")
+        raise HTTPException(status_code=500, detail="Internal server error")
