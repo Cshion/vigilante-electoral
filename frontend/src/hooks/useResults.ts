@@ -102,3 +102,23 @@ export function useNotifications(limit = 50, hours = 12) {
     refresh: mutate,
   };
 }
+
+/**
+ * Hook for fetching vote projection data
+ * Uses TBP (Trend-Based Projection) algorithm from backend
+ * @param regionCode - Region code to fetch projection for
+ */
+export function useProjection(regionCode: string) {
+  const { data, error, isLoading, mutate } = useSWR<import('@/lib/api').ProjectionData>(
+    regionCode ? `/positions/projection?region_code=${regionCode}` : null,
+    fetcher,
+    defaultSwrConfig
+  );
+
+  return {
+    projection: data || null,
+    isLoading,
+    isError: error,
+    refresh: mutate,
+  };
+}

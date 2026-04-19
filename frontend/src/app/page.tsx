@@ -1,50 +1,65 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { useLiveResults, useRegions, useActasProgress } from '@/hooks/useResults';
-import { getProjection, ProjectionData } from '@/lib/api';
+import { useLiveResults, useRegions, useActasProgress, useProjection } from '@/hooks/useResults';
 import { RivalryDisplay } from '@/components/RivalryDisplay';
 import { VoteEvolution } from '@/components/VoteEvolution';
 import { LiveIndicator } from '@/components/LiveIndicator';
 import { RegionSelector } from '@/components/RegionSelector';
 import { NotificationPanel } from '@/components/NotificationPanel';
 
+// Skeleton component for progressive rendering
+function RivalrySkeleton() {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 p-4 md:p-6 animate-pulse">
+      {/* Region name skeleton */}
+      <div className="h-6 bg-gray-200 rounded w-40 mx-auto mb-4"></div>
+      
+      {/* Candidate cards skeleton */}
+      <div className="flex gap-4 mb-6">
+        {/* Juntos skeleton */}
+        <div className="flex-1 bg-blue-50 rounded-xl p-4">
+          <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-3"></div>
+          <div className="h-4 bg-gray-200 rounded w-24 mx-auto mb-2"></div>
+          <div className="h-8 bg-blue-200 rounded w-20 mx-auto"></div>
+        </div>
+        
+        {/* VS indicator */}
+        <div className="flex items-center">
+          <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+        </div>
+        
+        {/* Renovación skeleton */}
+        <div className="flex-1 bg-yellow-50 rounded-xl p-4">
+          <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-3"></div>
+          <div className="h-4 bg-gray-200 rounded w-24 mx-auto mb-2"></div>
+          <div className="h-8 bg-yellow-200 rounded w-20 mx-auto"></div>
+        </div>
+      </div>
+      
+      {/* Progress bar skeleton */}
+      <div className="h-6 bg-gray-200 rounded-full mb-4"></div>
+      
+      {/* Difference indicator skeleton */}
+      <div className="h-12 bg-gray-100 rounded-xl"></div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const [selectedRegion, setSelectedRegion] = useState('TOTAL');
-  const [projection, setProjection] = useState<ProjectionData | null>(null);
   const { regions, isLoading: regionsLoading } = useRegions();
   // Only need 2 candidates now: Juntos and Renovación
   const { results, isLoading, isError, refresh } = useLiveResults(2, selectedRegion);
   // Fetch actas progress for selected region
   const { actas } = useActasProgress(selectedRegion);
-
-  // Fetch projection data when region changes
-  useEffect(() => {
-    getProjection(selectedRegion).then(setProjection);
-  }, [selectedRegion]);
+  // Fetch projection data - runs in PARALLEL with other SWR hooks
+  const { projection } = useProjection(selectedRegion);
 
   const selectedRegionName = results?.region_name || regions?.find((r) => r.code === selectedRegion)?.name || 'Total';
 
-  // Loading state - light theme with fluid animation
-  if (isLoading && !results) {
-    return (
-      <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
-        <div className="text-center px-4">
-          {/* Fluid pulsing loader */}
-          <div className="relative w-16 h-16 mx-auto mb-4">
-            <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping" style={{ animationDuration: '1.5s' }}></div>
-            <div className="absolute inset-2 rounded-full bg-blue-500/30 animate-pulse" style={{ animationDuration: '1s' }}></div>
-            <div className="absolute inset-4 rounded-full bg-blue-600 animate-pulse" style={{ animationDuration: '0.8s' }}></div>
-            <span className="absolute inset-0 flex items-center justify-center text-xl">🗳️</span>
-          </div>
-          <p className="text-gray-600 text-sm animate-pulse">Cargando resultados de ONPE...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Error state
+  // Error state - only return early for errors (NOT loading)
   if (isError) {
     return (
       <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-4">
@@ -98,25 +113,35 @@ export default function HomePage() {
           </div>
         </div>
         
-        {/* Region Filters - Below header */}
-        {regions && regions.length > 0 && (
-          <div className="bg-gray-50 border-t border-gray-100 px-3 sm:px-4 py-2">
-            <div className="max-w-4xl mx-auto">
+        {/* Region Filters - Always show section, with skeleton if loading */}
+        <div className="bg-gray-50 border-t border-gray-100 px-3 sm:px-4 py-2">
+          <div className="max-w-4xl mx-auto">
+            {regions && regions.length > 0 ? (
               <RegionSelector
                 regions={regions}
                 selectedRegion={selectedRegion}
                 onRegionChange={setSelectedRegion}
                 isLoading={isLoading || regionsLoading}
               />
-            </div>
+            ) : (
+              /* Region selector skeleton */
+              <div className="flex justify-center gap-2 animate-pulse">
+                <div className="h-8 w-16 bg-gray-200 rounded-full"></div>
+                <div className="h-8 w-14 bg-gray-200 rounded-full"></div>
+                <div className="h-8 w-20 bg-gray-200 rounded-full"></div>
+                <div className="h-8 w-28 bg-gray-200 rounded-full"></div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </header>
 
       {/* Main Content - Responsive */}
       <main className="px-4 py-4 md:py-6 max-w-4xl mx-auto">
-        {/* The Rivalry - Main Focus */}
-        {juntos && renovacion && rivalry && (
+        {/* The Rivalry - Progressive rendering: skeleton while loading, content when ready */}
+        {(isLoading && !results) ? (
+          <RivalrySkeleton />
+        ) : juntos && renovacion && rivalry ? (
           <RivalryDisplay 
             juntos={juntos}
             renovacion={renovacion}
@@ -129,9 +154,9 @@ export default function HomePage() {
             actasTotal={actas?.actas_total}
             projection={projection}
           />
-        )}
+        ) : null}
 
-        {/* Vote Evolution Chart */}
+        {/* Vote Evolution Chart - handles its own loading state */}
         <VoteEvolution regionCode={selectedRegion} />
 
         {/* Info Footer */}
