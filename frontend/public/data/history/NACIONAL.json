@@ -1,0 +1,44 @@
+{
+  "hours": 168,
+  "snapshots": [
+    {
+      "id": 318,
+      "timestamp": "2026-04-19T21:11:33.595411+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 1892110,
+        "porcentaje": 12.006
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 1878843,
+        "porcentaje": 11.921
+      },
+      "diferencia_votos": 13267,
+      "diferencia_porcentaje": 0.085,
+      "actas_porcentaje": 0.0,
+      "actas_contabilizadas": 0,
+      "actas_total": 0
+    },
+    {
+      "id": 323,
+      "timestamp": "2026-04-19T21:31:48.473417+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 1892123,
+        "porcentaje": 12.005
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 1878888,
+        "porcentaje": 11.921
+      },
+      "diferencia_votos": 13235,
+      "diferencia_porcentaje": 0.084,
+      "actas_porcentaje": 0.0,
+      "actas_contabilizadas": 0,
+      "actas_total": 0
+    }
+  ],
+  "total": 2
+}

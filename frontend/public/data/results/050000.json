@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "050000",
+  "region_name": "Ayacucho",
+  "timestamp": "2026-05-13T00:00:07.359462+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 89314,
+      "percentage": 31.409,
+      "percentage_emitted": 25.063
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 7750,
+      "percentage": 2.725,
+      "percentage_emitted": 2.175
+    }
+  ],
+  "totals": {
+    "valid_votes": 284359,
+    "blank_votes": 52951,
+    "null_votes": 19042,
+    "emitted_votes": 356352
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 81564,
+    "gap_percent": 28.684,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

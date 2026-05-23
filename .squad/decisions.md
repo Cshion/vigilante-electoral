@@ -4,7 +4,7 @@
 
 ### Arquitectura para Resultados por Departamento (2026-04-17)
 **By:** Alejandro (Lead)
-**Requested by:** Aaron
+**Requested by:** Contributor
 
 #### Resumen
 Diseño del feature para visualizar resultados electorales por departamento/región además de los nacionales.
@@ -51,7 +51,7 @@ Diseño del feature para visualizar resultados electorales por departamento/regi
 
 ### Smart Storage Strategy: Only Save Changes (2026-04-17)
 **By:** Alejandro (Lead)
-**Requested by:** Aaron
+**Requested by:** Contributor
 
 #### Problem Solved
 Previously storing a snapshot every 15 minutes regardless of vote changes. Now we only store when votes actually change.

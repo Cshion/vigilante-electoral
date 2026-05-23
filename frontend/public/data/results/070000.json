@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "070000",
+  "region_name": "Callao",
+  "timestamp": "2026-05-12T16:00:07.817193+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 158426,
+      "percentage": 22.832,
+      "percentage_emitted": 18.82
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 32775,
+      "percentage": 4.723,
+      "percentage_emitted": 3.893
+    }
+  ],
+  "totals": {
+    "valid_votes": 693877,
+    "blank_votes": 99061,
+    "null_votes": 48874,
+    "emitted_votes": 841812
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 125651,
+    "gap_percent": 18.109,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

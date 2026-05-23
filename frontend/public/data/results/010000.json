@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "010000",
+  "region_name": "Amazonas",
+  "timestamp": "2026-05-08T23:00:06.834847+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 59302,
+      "percentage": 36.253,
+      "percentage_emitted": 27.566
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 6034,
+      "percentage": 3.689,
+      "percentage_emitted": 2.805
+    }
+  ],
+  "totals": {
+    "valid_votes": 163579,
+    "blank_votes": 36318,
+    "null_votes": 15232,
+    "emitted_votes": 215129
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 53268,
+    "gap_percent": 32.564,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

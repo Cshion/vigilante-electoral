@@ -1,0 +1,11 @@
+{
+  "region_code": "EXTRANJERO",
+  "region_name": "Voto Extranjero",
+  "actas_percentage": 100.0,
+  "actas_counted": 2543,
+  "actas_total": 2543,
+  "participation": 0,
+  "total_emitted_votes": 411077,
+  "total_valid_votes": 307962,
+  "timestamp": "2026-05-09T00:45:03.904867+00:00"
+}

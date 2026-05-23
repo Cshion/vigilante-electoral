@@ -1,0 +1,26 @@
+{
+  "actas_percentage": 100.0,
+  "confidence": "high",
+  "snapshots_used": 100,
+  "juntos": {
+    "current_votes": 37264,
+    "projected_votes": 37264,
+    "projected_votes_low": 37264,
+    "projected_votes_high": 37264,
+    "growth_rate_per_pct": 0,
+    "trend_direction": "stable"
+  },
+  "renovacion": {
+    "current_votes": 45300,
+    "projected_votes": 45300,
+    "projected_votes_low": 45300,
+    "projected_votes_high": 45300,
+    "growth_rate_per_pct": 0,
+    "trend_direction": "stable"
+  },
+  "projected_leader": "renovacion",
+  "current_leader": "renovacion",
+  "has_contradiction": false,
+  "swap_probability": "unlikely",
+  "methodology_text": "Resultados finales de la primera vuelta electoral."
+}

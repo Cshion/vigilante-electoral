@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "040000",
+  "region_name": "Arequipa",
+  "timestamp": "2026-05-09T21:30:06.213289+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 88766,
+      "percentage": 10.085,
+      "percentage_emitted": 8.929
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 93233,
+      "percentage": 10.592,
+      "percentage_emitted": 9.378
+    }
+  ],
+  "totals": {
+    "valid_votes": 880207,
+    "blank_votes": 75007,
+    "null_votes": 38934,
+    "emitted_votes": 994148
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS3",
+    "gap": 4467,
+    "gap_percent": 0.507,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

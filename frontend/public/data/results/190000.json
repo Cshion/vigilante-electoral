@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "190000",
+  "region_name": "Pasco",
+  "timestamp": "2026-05-15T15:15:07.707655+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 100908,
+      "percentage": 11.459,
+      "percentage_emitted": 8.794
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 58795,
+      "percentage": 6.677,
+      "percentage_emitted": 5.124
+    }
+  ],
+  "totals": {
+    "valid_votes": 880573,
+    "blank_votes": 183282,
+    "null_votes": 83609,
+    "emitted_votes": 1147464
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 42113,
+    "gap_percent": 4.782,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

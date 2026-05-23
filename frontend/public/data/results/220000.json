@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "220000",
+  "region_name": "San Mart\u00edn",
+  "timestamp": "2026-05-12T02:00:10.317538+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 26302,
+      "percentage": 11.909,
+      "percentage_emitted": 10.564
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 13698,
+      "percentage": 6.202,
+      "percentage_emitted": 5.502
+    }
+  ],
+  "totals": {
+    "valid_votes": 220856,
+    "blank_votes": 18885,
+    "null_votes": 9228,
+    "emitted_votes": 248969
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 12604,
+    "gap_percent": 5.707,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

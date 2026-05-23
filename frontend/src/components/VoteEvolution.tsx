@@ -70,14 +70,15 @@ export function VoteEvolution({ regionCode }: VoteEvolutionProps) {
     apiUrl,
     fetcher,
     { 
-      refreshInterval: 300000, // Refresh every 5 minutes (matches server cache)
+      refreshInterval: 0, // STATIC MODE: No refresh needed
       revalidateOnFocus: false, // Don't spam on tab switch
       revalidateOnReconnect: false,
-      dedupingInterval: 300000, // Dedupe for 5 minutes
+      dedupingInterval: 3600000, // Cache for 1 hour
     }
   );
 
-  const history = data?.snapshots || [];
+  // Reverse history so newest entries appear first (original is sorted oldest→newest)
+  const history = data?.snapshots ? [...data.snapshots].reverse() : [];
   const totalPages = Math.ceil(history.length / ITEMS_PER_PAGE);
   const paginatedHistory = history.slice(
     currentPage * ITEMS_PER_PAGE,

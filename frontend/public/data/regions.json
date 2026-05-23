@@ -1,0 +1,167 @@
+{
+  "regions": [
+    {
+      "code": "TOTAL",
+      "name": "Total (Per\u00fa + Extranjero)",
+      "category": "total",
+      "ubigeo": null
+    },
+    {
+      "code": "PERU",
+      "name": "Per\u00fa (territorio nacional)",
+      "category": "peru",
+      "ubigeo": null
+    },
+    {
+      "code": "EXTRANJERO",
+      "name": "Voto Extranjero",
+      "category": "extranjero",
+      "ubigeo": null
+    },
+    {
+      "code": "010000",
+      "name": "Amazonas",
+      "category": "departamento",
+      "ubigeo": "010000"
+    },
+    {
+      "code": "030000",
+      "name": "Apur\u00edmac",
+      "category": "departamento",
+      "ubigeo": "030000"
+    },
+    {
+      "code": "040000",
+      "name": "Arequipa",
+      "category": "departamento",
+      "ubigeo": "040000"
+    },
+    {
+      "code": "050000",
+      "name": "Ayacucho",
+      "category": "departamento",
+      "ubigeo": "050000"
+    },
+    {
+      "code": "060000",
+      "name": "Cajamarca",
+      "category": "departamento",
+      "ubigeo": "060000"
+    },
+    {
+      "code": "070000",
+      "name": "Callao",
+      "category": "departamento",
+      "ubigeo": "070000"
+    },
+    {
+      "code": "080000",
+      "name": "Cusco",
+      "category": "departamento",
+      "ubigeo": "080000"
+    },
+    {
+      "code": "090000",
+      "name": "Huancavelica",
+      "category": "departamento",
+      "ubigeo": "090000"
+    },
+    {
+      "code": "100000",
+      "name": "Hu\u00e1nuco",
+      "category": "departamento",
+      "ubigeo": "100000"
+    },
+    {
+      "code": "110000",
+      "name": "Ica",
+      "category": "departamento",
+      "ubigeo": "110000"
+    },
+    {
+      "code": "120000",
+      "name": "Jun\u00edn",
+      "category": "departamento",
+      "ubigeo": "120000"
+    },
+    {
+      "code": "130000",
+      "name": "La Libertad",
+      "category": "departamento",
+      "ubigeo": "130000"
+    },
+    {
+      "code": "140000",
+      "name": "Lambayeque",
+      "category": "departamento",
+      "ubigeo": "140000"
+    },
+    {
+      "code": "150000",
+      "name": "Lima",
+      "category": "departamento",
+      "ubigeo": "150000"
+    },
+    {
+      "code": "160000",
+      "name": "Loreto",
+      "category": "departamento",
+      "ubigeo": "160000"
+    },
+    {
+      "code": "170000",
+      "name": "Madre de Dios",
+      "category": "departamento",
+      "ubigeo": "170000"
+    },
+    {
+      "code": "180000",
+      "name": "Moquegua",
+      "category": "departamento",
+      "ubigeo": "180000"
+    },
+    {
+      "code": "190000",
+      "name": "Pasco",
+      "category": "departamento",
+      "ubigeo": "190000"
+    },
+    {
+      "code": "200000",
+      "name": "Piura",
+      "category": "departamento",
+      "ubigeo": "200000"
+    },
+    {
+      "code": "210000",
+      "name": "Puno",
+      "category": "departamento",
+      "ubigeo": "210000"
+    },
+    {
+      "code": "220000",
+      "name": "San Mart\u00edn",
+      "category": "departamento",
+      "ubigeo": "220000"
+    },
+    {
+      "code": "240000",
+      "name": "Tumbes",
+      "category": "departamento",
+      "ubigeo": "240000"
+    },
+    {
+      "code": "250000",
+      "name": "Ucayali",
+      "category": "departamento",
+      "ubigeo": "250000"
+    },
+    {
+      "code": "020000",
+      "name": "\u00c1ncash",
+      "category": "departamento",
+      "ubigeo": "020000"
+    }
+  ],
+  "total_count": 27
+}

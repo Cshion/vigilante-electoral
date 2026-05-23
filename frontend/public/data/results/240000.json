@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "240000",
+  "region_name": "Tumbes",
+  "timestamp": "2026-05-12T00:15:08.361665+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 17377,
+      "percentage": 3.008,
+      "percentage_emitted": 2.588
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 86785,
+      "percentage": 15.02,
+      "percentage_emitted": 12.923
+    }
+  ],
+  "totals": {
+    "valid_votes": 577783,
+    "blank_votes": 62495,
+    "null_votes": 31267,
+    "emitted_votes": 671545
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS3",
+    "gap": 69408,
+    "gap_percent": 12.012,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

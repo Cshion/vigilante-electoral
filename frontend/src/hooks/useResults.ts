@@ -4,13 +4,16 @@ import useSWR from 'swr';
 import { fetcher } from '@/lib/api';
 import { LiveResults, RegionsResponse, ActasProgress } from '@/lib/types';
 
-// Global SWR config for caching - respects server cache-control headers
+// STATIC MODE: No polling needed - data is final
+const IS_STATIC = true;
+
+// SWR config - disabled polling for static mode
 const defaultSwrConfig = {
-  refreshInterval: 300000,   // Poll every 5 minutes (matches server cache TTL)
+  refreshInterval: IS_STATIC ? 0 : 300000,   // No polling in static mode
   revalidateOnFocus: false,  // Don't refetch when tab regains focus
   revalidateOnReconnect: false, // Don't refetch on reconnect
-  dedupingInterval: 300000,  // Dedupe requests for 5 minutes (matches cache TTL)
-  revalidateIfStale: false,  // Don't revalidate if data is stale (trust server cache)
+  dedupingInterval: IS_STATIC ? 3600000 : 300000,  // Cache for 1 hour in static mode
+  revalidateIfStale: false,  // Don't revalidate if data is stale
 };
 
 /**

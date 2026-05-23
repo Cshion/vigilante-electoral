@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "230000",
+  "region_name": "Tacna",
+  "timestamp": "2026-05-21T08:00:10.547361+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 7748,
+      "percentage": 6.993,
+      "percentage_emitted": 5.466
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 6556,
+      "percentage": 5.917,
+      "percentage_emitted": 4.625
+    }
+  ],
+  "totals": {
+    "valid_votes": 110792,
+    "blank_votes": 21599,
+    "null_votes": 9363,
+    "emitted_votes": 141754
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 1192,
+    "gap_percent": 1.076,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

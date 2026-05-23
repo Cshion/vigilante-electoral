@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "TOTAL",
+  "region_name": "Total (Per\u00fa + Extranjero)",
+  "timestamp": "2026-05-16T02:45:03.561642+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 2015114,
+      "percentage": 12.031,
+      "percentage_emitted": 9.992
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 1993905,
+      "percentage": 11.904,
+      "percentage_emitted": 9.887
+    }
+  ],
+  "totals": {
+    "valid_votes": 16749427,
+    "blank_votes": 2372895,
+    "null_votes": 1045423,
+    "emitted_votes": 20167745
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 21209,
+    "gap_percent": 0.127,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

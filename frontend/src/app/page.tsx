@@ -7,7 +7,6 @@ import { RivalryDisplay } from '@/components/RivalryDisplay';
 import { VoteEvolution } from '@/components/VoteEvolution';
 import { LiveIndicator } from '@/components/LiveIndicator';
 import { RegionSelector } from '@/components/RegionSelector';
-import { NotificationPanel } from '@/components/NotificationPanel';
 
 // Skeleton component for progressive rendering
 function RivalrySkeleton() {
@@ -107,8 +106,7 @@ export default function HomePage() {
             </div>
             
             <div className="flex items-center gap-2 flex-shrink-0">
-              <NotificationPanel onRegionSelect={setSelectedRegion} />
-              <LiveIndicator timestamp={results?.timestamp} refreshInterval={900} />
+              <LiveIndicator timestamp={results?.timestamp} />
             </div>
           </div>
         </div>
@@ -138,6 +136,13 @@ export default function HomePage() {
 
       {/* Main Content - Responsive */}
       <main className="px-4 py-4 md:py-6 max-w-4xl mx-auto">
+        {/* Static Data Banner */}
+        <div className="mb-4 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-3 text-center">
+          <span className="text-amber-800 text-sm font-medium">
+            📊 Resultados Finales — Primera Vuelta Electoral 2026
+          </span>
+        </div>
+        
         {/* The Rivalry - Progressive rendering: skeleton while loading, content when ready */}
         {(isLoading && !results) ? (
           <RivalrySkeleton />

@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "170000",
+  "region_name": "Madre de Dios",
+  "timestamp": "2026-05-14T05:00:10.250199+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 14719,
+      "percentage": 12.905,
+      "percentage_emitted": 11.209
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 6601,
+      "percentage": 5.788,
+      "percentage_emitted": 5.027
+    }
+  ],
+  "totals": {
+    "valid_votes": 114054,
+    "blank_votes": 12001,
+    "null_votes": 5261,
+    "emitted_votes": 131316
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 8118,
+    "gap_percent": 7.117,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

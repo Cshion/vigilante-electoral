@@ -4,7 +4,7 @@
 
 **Project:** Vigilante Electoral - Electoral monitoring application for Peru 2026 elections
 **Tech Stack:** Next.js (frontend), FastAPI (backend), Supabase (database), Vercel (deployment)
-**User:** Aaron
+**User:** Contributor
 
 This is a real-time election results visualization app that scrapes data from ONPE (Peru's electoral authority) and displays vote counts, trends, and notifications.
 

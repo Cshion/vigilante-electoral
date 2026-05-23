@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "060000",
+  "region_name": "Cajamarca",
+  "timestamp": "2026-05-14T17:30:06.565813+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 268961,
+      "percentage": 41.691,
+      "percentage_emitted": 32.658
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 20875,
+      "percentage": 3.236,
+      "percentage_emitted": 2.535
+    }
+  ],
+  "totals": {
+    "valid_votes": 645130,
+    "blank_votes": 124649,
+    "null_votes": 53779,
+    "emitted_votes": 823558
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 248086,
+    "gap_percent": 38.455,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

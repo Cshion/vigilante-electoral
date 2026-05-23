@@ -3,7 +3,7 @@
 ## Project Context
 
 **Project:** vigilante_electoral — Electoral monitoring application
-**User:** Aaron
+**User:** Contributor
 **Stack:** FastAPI backend, Next.js 16 frontend, Supabase (database), Vercel (deployment)
 **Purpose:** Monitor and track electoral results from Peru's ONPE website, showing vote changes over time
 

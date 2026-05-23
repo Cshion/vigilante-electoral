@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "130000",
+  "region_name": "La Libertad",
+  "timestamp": "2026-05-05T19:15:05.753727+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 71644,
+      "percentage": 10.738,
+      "percentage_emitted": 8.76
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 57305,
+      "percentage": 8.589,
+      "percentage_emitted": 7.007
+    }
+  ],
+  "totals": {
+    "valid_votes": 667213,
+    "blank_votes": 100404,
+    "null_votes": 50246,
+    "emitted_votes": 817863
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 14339,
+    "gap_percent": 2.149,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "140000",
+  "region_name": "Lambayeque",
+  "timestamp": "2026-05-13T15:15:06.9022+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 199439,
+      "percentage": 3.277,
+      "percentage_emitted": 2.886
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 1211672,
+      "percentage": 19.91,
+      "percentage_emitted": 17.537
+    }
+  ],
+  "totals": {
+    "valid_votes": 6085678,
+    "blank_votes": 555344,
+    "null_votes": 268374,
+    "emitted_votes": 6909396
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS3",
+    "gap": 1012233,
+    "gap_percent": 16.633,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "election_type": "PRESI",
+  "region_code": "110000",
+  "region_name": "Ica",
+  "timestamp": "2026-05-10T00:15:05.879922+00:00",
+  "candidates": [
+    {
+      "id": "16002918",
+      "name": "ROBERTO HELBERT SANCHEZ PALOMINO",
+      "party_name": "JUNTOS POR EL PER\u00da",
+      "party_id": "10",
+      "votes": 78227,
+      "percentage": 12.303,
+      "percentage_emitted": 9.957
+    },
+    {
+      "id": "07845838",
+      "name": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+      "party_name": "RENOVACI\u00d3N POPULAR",
+      "party_id": "35",
+      "votes": 48223,
+      "percentage": 7.584,
+      "percentage_emitted": 6.138
+    }
+  ],
+  "totals": {
+    "valid_votes": 635845,
+    "blank_votes": 107546,
+    "null_votes": 42219,
+    "emitted_votes": 785610
+  },
+  "all_candidates_count": 2,
+  "source": "Static (Final)",
+  "rivalry": {
+    "leader": "POS2",
+    "gap": 30004,
+    "gap_percent": 4.719,
+    "pos2_party_id": "10",
+    "pos3_party_id": "35"
+  }
+}

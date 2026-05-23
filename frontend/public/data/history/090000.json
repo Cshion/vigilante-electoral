@@ -1,0 +1,766 @@
+{
+  "hours": 168,
+  "snapshots": [
+    {
+      "id": 242,
+      "timestamp": "2026-04-18T06:26:10.980667+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 92130,
+        "porcentaje": 29.436
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 18715,
+        "porcentaje": 5.98
+      },
+      "diferencia_votos": 73415,
+      "diferencia_porcentaje": 23.456,
+      "actas_porcentaje": 90.944,
+      "actas_contabilizadas": 2129,
+      "actas_total": 2341
+    },
+    {
+      "id": 269,
+      "timestamp": "2026-04-18T14:45:04.312795+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 92464,
+        "porcentaje": 29.418
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 18793,
+        "porcentaje": 5.979
+      },
+      "diferencia_votos": 73671,
+      "diferencia_porcentaje": 23.439,
+      "actas_porcentaje": 91.286,
+      "actas_contabilizadas": 2137,
+      "actas_total": 2341
+    },
+    {
+      "id": 388,
+      "timestamp": "2026-04-20T23:45:05.345568+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 93010,
+        "porcentaje": 29.459
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 18841,
+        "porcentaje": 5.968
+      },
+      "diferencia_votos": 74169,
+      "diferencia_porcentaje": 23.491,
+      "actas_porcentaje": 91.756,
+      "actas_contabilizadas": 2148,
+      "actas_total": 2341
+    },
+    {
+      "id": 395,
+      "timestamp": "2026-04-21T00:30:06.724919+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 93691,
+        "porcentaje": 29.532
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 18883,
+        "porcentaje": 5.952
+      },
+      "diferencia_votos": 74808,
+      "diferencia_porcentaje": 23.58,
+      "actas_porcentaje": 92.396,
+      "actas_contabilizadas": 2163,
+      "actas_total": 2341
+    },
+    {
+      "id": 421,
+      "timestamp": "2026-04-21T15:45:05.126574+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 93936,
+        "porcentaje": 29.48
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19003,
+        "porcentaje": 5.964
+      },
+      "diferencia_votos": 74933,
+      "diferencia_porcentaje": 23.516,
+      "actas_porcentaje": 92.738,
+      "actas_contabilizadas": 2171,
+      "actas_total": 2341
+    },
+    {
+      "id": 490,
+      "timestamp": "2026-04-22T01:45:05.693627+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94008,
+        "porcentaje": 29.49
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19004,
+        "porcentaje": 5.962
+      },
+      "diferencia_votos": 75004,
+      "diferencia_porcentaje": 23.528,
+      "actas_porcentaje": 92.738,
+      "actas_contabilizadas": 2171,
+      "actas_total": 2341
+    },
+    {
+      "id": 495,
+      "timestamp": "2026-04-22T02:00:07.294407+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94008,
+        "porcentaje": 29.49
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19004,
+        "porcentaje": 5.962
+      },
+      "diferencia_votos": 75004,
+      "diferencia_porcentaje": 23.528,
+      "actas_porcentaje": 92.824,
+      "actas_contabilizadas": 2173,
+      "actas_total": 2341
+    },
+    {
+      "id": 625,
+      "timestamp": "2026-04-23T14:45:05.450948+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94008,
+        "porcentaje": 29.49
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19004,
+        "porcentaje": 5.962
+      },
+      "diferencia_votos": 75004,
+      "diferencia_porcentaje": 23.528,
+      "actas_porcentaje": 93.08,
+      "actas_contabilizadas": 2179,
+      "actas_total": 2341
+    },
+    {
+      "id": 627,
+      "timestamp": "2026-04-23T15:00:06.893599+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94148,
+        "porcentaje": 29.439
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19075,
+        "porcentaje": 5.965
+      },
+      "diferencia_votos": 75073,
+      "diferencia_porcentaje": 23.474,
+      "actas_porcentaje": 93.08,
+      "actas_contabilizadas": 2179,
+      "actas_total": 2341
+    },
+    {
+      "id": 641,
+      "timestamp": "2026-04-23T19:15:05.410161+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94816,
+        "porcentaje": 29.43
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19173,
+        "porcentaje": 5.951
+      },
+      "diferencia_votos": 75643,
+      "diferencia_porcentaje": 23.479,
+      "actas_porcentaje": 93.08,
+      "actas_contabilizadas": 2179,
+      "actas_total": 2341
+    },
+    {
+      "id": 647,
+      "timestamp": "2026-04-23T19:30:06.555581+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94816,
+        "porcentaje": 29.43
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19173,
+        "porcentaje": 5.951
+      },
+      "diferencia_votos": 75643,
+      "diferencia_porcentaje": 23.479,
+      "actas_porcentaje": 93.806,
+      "actas_contabilizadas": 2196,
+      "actas_total": 2341
+    },
+    {
+      "id": 787,
+      "timestamp": "2026-04-25T01:45:04.986147+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94816,
+        "porcentaje": 29.43
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19173,
+        "porcentaje": 5.951
+      },
+      "diferencia_votos": 75643,
+      "diferencia_porcentaje": 23.479,
+      "actas_porcentaje": 93.849,
+      "actas_contabilizadas": 2197,
+      "actas_total": 2341
+    },
+    {
+      "id": 792,
+      "timestamp": "2026-04-25T02:00:06.85707+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94841,
+        "porcentaje": 29.424
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19179,
+        "porcentaje": 5.95
+      },
+      "diferencia_votos": 75662,
+      "diferencia_porcentaje": 23.474,
+      "actas_porcentaje": 93.849,
+      "actas_contabilizadas": 2197,
+      "actas_total": 2341
+    },
+    {
+      "id": 799,
+      "timestamp": "2026-04-25T02:30:05.445923+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94933,
+        "porcentaje": 29.426
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19207,
+        "porcentaje": 5.954
+      },
+      "diferencia_votos": 75726,
+      "diferencia_porcentaje": 23.472,
+      "actas_porcentaje": 93.849,
+      "actas_contabilizadas": 2197,
+      "actas_total": 2341
+    },
+    {
+      "id": 804,
+      "timestamp": "2026-04-25T02:45:05.431279+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 94933,
+        "porcentaje": 29.426
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19207,
+        "porcentaje": 5.954
+      },
+      "diferencia_votos": 75726,
+      "diferencia_porcentaje": 23.472,
+      "actas_porcentaje": 93.934,
+      "actas_contabilizadas": 2199,
+      "actas_total": 2341
+    },
+    {
+      "id": 835,
+      "timestamp": "2026-04-25T15:45:04.918822+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96060,
+        "porcentaje": 29.512
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19325,
+        "porcentaje": 5.937
+      },
+      "diferencia_votos": 76735,
+      "diferencia_porcentaje": 23.575,
+      "actas_porcentaje": 94.703,
+      "actas_contabilizadas": 2217,
+      "actas_total": 2341
+    },
+    {
+      "id": 843,
+      "timestamp": "2026-04-25T16:45:04.916097+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96201,
+        "porcentaje": 29.521
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19354,
+        "porcentaje": 5.939
+      },
+      "diferencia_votos": 76847,
+      "diferencia_porcentaje": 23.582,
+      "actas_porcentaje": 94.789,
+      "actas_contabilizadas": 2219,
+      "actas_total": 2341
+    },
+    {
+      "id": 911,
+      "timestamp": "2026-04-26T03:00:06.885486+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96385,
+        "porcentaje": 29.549
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19360,
+        "porcentaje": 5.935
+      },
+      "diferencia_votos": 77025,
+      "diferencia_porcentaje": 23.614,
+      "actas_porcentaje": 94.874,
+      "actas_contabilizadas": 2221,
+      "actas_total": 2341
+    },
+    {
+      "id": 940,
+      "timestamp": "2026-04-26T23:00:06.81561+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96701,
+        "porcentaje": 29.549
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19402,
+        "porcentaje": 5.929
+      },
+      "diferencia_votos": 77299,
+      "diferencia_porcentaje": 23.62,
+      "actas_porcentaje": 94.874,
+      "actas_contabilizadas": 2221,
+      "actas_total": 2341
+    },
+    {
+      "id": 944,
+      "timestamp": "2026-04-26T23:15:04.659117+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96701,
+        "porcentaje": 29.549
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19402,
+        "porcentaje": 5.929
+      },
+      "diferencia_votos": 77299,
+      "diferencia_porcentaje": 23.62,
+      "actas_porcentaje": 95.301,
+      "actas_contabilizadas": 2231,
+      "actas_total": 2341
+    },
+    {
+      "id": 1318,
+      "timestamp": "2026-04-30T19:00:08.366506+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96919,
+        "porcentaje": 29.585
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19419,
+        "porcentaje": 5.928
+      },
+      "diferencia_votos": 77500,
+      "diferencia_porcentaje": 23.657,
+      "actas_porcentaje": 95.429,
+      "actas_contabilizadas": 2234,
+      "actas_total": 2341
+    },
+    {
+      "id": 1326,
+      "timestamp": "2026-04-30T19:45:06.802935+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 96983,
+        "porcentaje": 29.598
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19419,
+        "porcentaje": 5.926
+      },
+      "diferencia_votos": 77564,
+      "diferencia_porcentaje": 23.672,
+      "actas_porcentaje": 95.472,
+      "actas_contabilizadas": 2235,
+      "actas_total": 2341
+    },
+    {
+      "id": 1351,
+      "timestamp": "2026-04-30T23:45:06.063666+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 97133,
+        "porcentaje": 29.596
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19444,
+        "porcentaje": 5.925
+      },
+      "diferencia_votos": 77689,
+      "diferencia_porcentaje": 23.671,
+      "actas_porcentaje": 95.643,
+      "actas_contabilizadas": 2239,
+      "actas_total": 2341
+    },
+    {
+      "id": 1417,
+      "timestamp": "2026-05-01T22:15:05.712684+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 97269,
+        "porcentaje": 29.617
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19451,
+        "porcentaje": 5.922
+      },
+      "diferencia_votos": 77818,
+      "diferencia_porcentaje": 23.695,
+      "actas_porcentaje": 95.728,
+      "actas_contabilizadas": 2241,
+      "actas_total": 2341
+    },
+    {
+      "id": 1423,
+      "timestamp": "2026-05-01T23:15:06.818369+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 98193,
+        "porcentaje": 29.755
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19478,
+        "porcentaje": 5.902
+      },
+      "diferencia_votos": 78715,
+      "diferencia_porcentaje": 23.853,
+      "actas_porcentaje": 96.369,
+      "actas_contabilizadas": 2256,
+      "actas_total": 2341
+    },
+    {
+      "id": 1431,
+      "timestamp": "2026-05-02T01:30:07.782694+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 98255,
+        "porcentaje": 29.764
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19480,
+        "porcentaje": 5.901
+      },
+      "diferencia_votos": 78775,
+      "diferencia_porcentaje": 23.863,
+      "actas_porcentaje": 96.412,
+      "actas_contabilizadas": 2257,
+      "actas_total": 2341
+    },
+    {
+      "id": 1701,
+      "timestamp": "2026-05-06T01:15:06.159722+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 98546,
+        "porcentaje": 29.778
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19525,
+        "porcentaje": 5.9
+      },
+      "diferencia_votos": 79021,
+      "diferencia_porcentaje": 23.878,
+      "actas_porcentaje": 96.668,
+      "actas_contabilizadas": 2263,
+      "actas_total": 2341
+    },
+    {
+      "id": 1707,
+      "timestamp": "2026-05-06T02:00:07.818166+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 99246,
+        "porcentaje": 29.794
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19671,
+        "porcentaje": 5.905
+      },
+      "diferencia_votos": 79575,
+      "diferencia_porcentaje": 23.889,
+      "actas_porcentaje": 97.266,
+      "actas_contabilizadas": 2277,
+      "actas_total": 2341
+    },
+    {
+      "id": 1714,
+      "timestamp": "2026-05-06T02:45:05.565739+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 100071,
+        "porcentaje": 29.814
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19794,
+        "porcentaje": 5.897
+      },
+      "diferencia_votos": 80277,
+      "diferencia_porcentaje": 23.917,
+      "actas_porcentaje": 97.95,
+      "actas_contabilizadas": 2293,
+      "actas_total": 2341
+    },
+    {
+      "id": 1719,
+      "timestamp": "2026-05-06T03:30:06.864026+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 101073,
+        "porcentaje": 29.876
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19937,
+        "porcentaje": 5.893
+      },
+      "diferencia_votos": 81136,
+      "diferencia_porcentaje": 23.983,
+      "actas_porcentaje": 97.95,
+      "actas_contabilizadas": 2293,
+      "actas_total": 2341
+    },
+    {
+      "id": 1724,
+      "timestamp": "2026-05-06T03:45:05.22526+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 101073,
+        "porcentaje": 29.876
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19937,
+        "porcentaje": 5.893
+      },
+      "diferencia_votos": 81136,
+      "diferencia_porcentaje": 23.983,
+      "actas_porcentaje": 98.718,
+      "actas_contabilizadas": 2311,
+      "actas_total": 2341
+    },
+    {
+      "id": 1761,
+      "timestamp": "2026-05-06T21:45:05.335356+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 101205,
+        "porcentaje": 29.893
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19941,
+        "porcentaje": 5.89
+      },
+      "diferencia_votos": 81264,
+      "diferencia_porcentaje": 24.003,
+      "actas_porcentaje": 98.804,
+      "actas_contabilizadas": 2313,
+      "actas_total": 2341
+    },
+    {
+      "id": 1773,
+      "timestamp": "2026-05-06T22:45:05.944735+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 101446,
+        "porcentaje": 29.935
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19945,
+        "porcentaje": 5.885
+      },
+      "diferencia_votos": 81501,
+      "diferencia_porcentaje": 24.05,
+      "actas_porcentaje": 98.889,
+      "actas_contabilizadas": 2315,
+      "actas_total": 2341
+    },
+    {
+      "id": 1858,
+      "timestamp": "2026-05-07T18:30:07.591842+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 101517,
+        "porcentaje": 29.934
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19952,
+        "porcentaje": 5.883
+      },
+      "diferencia_votos": 81565,
+      "diferencia_porcentaje": 24.051,
+      "actas_porcentaje": 98.975,
+      "actas_contabilizadas": 2317,
+      "actas_total": 2341
+    },
+    {
+      "id": 1882,
+      "timestamp": "2026-05-08T00:00:09.854994+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 101639,
+        "porcentaje": 29.929
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 19984,
+        "porcentaje": 5.884
+      },
+      "diferencia_votos": 81655,
+      "diferencia_porcentaje": 24.045,
+      "actas_porcentaje": 99.103,
+      "actas_contabilizadas": 2320,
+      "actas_total": 2341
+    },
+    {
+      "id": 1893,
+      "timestamp": "2026-05-08T01:00:08.28218+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 102167,
+        "porcentaje": 29.894
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 20109,
+        "porcentaje": 5.884
+      },
+      "diferencia_votos": 82058,
+      "diferencia_porcentaje": 24.01,
+      "actas_porcentaje": 99.701,
+      "actas_contabilizadas": 2334,
+      "actas_total": 2341
+    },
+    {
+      "id": 1901,
+      "timestamp": "2026-05-08T02:00:08.696526+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 102284,
+        "porcentaje": 29.869
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 20150,
+        "porcentaje": 5.884
+      },
+      "diferencia_votos": 82134,
+      "diferencia_porcentaje": 23.985,
+      "actas_porcentaje": 99.701,
+      "actas_contabilizadas": 2334,
+      "actas_total": 2341
+    },
+    {
+      "id": 1905,
+      "timestamp": "2026-05-08T02:15:06.3342+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 102284,
+        "porcentaje": 29.869
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 20150,
+        "porcentaje": 5.884
+      },
+      "diferencia_votos": 82134,
+      "diferencia_porcentaje": 23.985,
+      "actas_porcentaje": 99.872,
+      "actas_contabilizadas": 2338,
+      "actas_total": 2341
+    },
+    {
+      "id": 2143,
+      "timestamp": "2026-05-09T19:15:05.237252+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 102284,
+        "porcentaje": 29.869
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 20150,
+        "porcentaje": 5.884
+      },
+      "diferencia_votos": 82134,
+      "diferencia_porcentaje": 23.985,
+      "actas_porcentaje": 100.0,
+      "actas_contabilizadas": 2341,
+      "actas_total": 2341
+    },
+    {
+      "id": 2149,
+      "timestamp": "2026-05-09T19:30:06.753195+00:00",
+      "segundo": {
+        "nombre": "ROBERTO HELBERT SANCHEZ PALOMINO",
+        "votos": 102366,
+        "porcentaje": 29.851
+      },
+      "tercero": {
+        "nombre": "RAFAEL BERNARDO L\u00d3PEZ ALIAGA CAZORLA",
+        "votos": 20181,
+        "porcentaje": 5.885
+      },
+      "diferencia_votos": 82185,
+      "diferencia_porcentaje": 23.966,
+      "actas_porcentaje": 100.0,
+      "actas_contabilizadas": 2341,
+      "actas_total": 2341
+    }
+  ],
+  "total": 40
+}
