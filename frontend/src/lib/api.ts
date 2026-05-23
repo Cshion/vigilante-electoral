@@ -101,9 +101,7 @@ export interface ProjectionData {
 
 export async function getProjection(regionCode: string = 'TOTAL'): Promise<ProjectionData | null> {
   try {
-    const res = await fetch(`${API_URL}/positions/projection?region_code=${regionCode}`);
-    if (!res.ok) return null;
-    return res.json();
+    return await fetcher<ProjectionData>(`/positions/projection?region_code=${regionCode}`);
   } catch {
     return null;
   }
